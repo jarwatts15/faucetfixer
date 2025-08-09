@@ -25,8 +25,8 @@ export default function DiagnosisIntro() {
           Getting Started
         </Text>
         <Text style={{ fontSize: 16, marginBottom: 24, textAlign: 'center' }}>
-          We'll ask you a few questions and ask you to take a photo of your
-          faucet. Based on your answers and the image, we'll guide you through
+          We’ll ask you a few questions and ask you to take a photo of your
+          faucet. Based on your answers and the image, we’ll guide you through
           the right fixes.
         </Text>
         <Button

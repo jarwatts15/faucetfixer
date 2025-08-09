@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 
 /**
  * The root layout for the Faucet Fixer app.
@@ -22,6 +22,11 @@ export default function RootLayout() {
           name="index"
           options={{ title: 'Home' }}
         />
+        {/* Intake form */}
+        <Stack.Screen
+          name="intakeForm"
+          options={{ title: 'Intake Form' }}
+        />
         {/* Introduction to the diagnosis flow */}
         <Stack.Screen
           name="diagnosisIntro"
@@ -37,8 +42,13 @@ export default function RootLayout() {
           name="camera"
           options={{ title: 'Camera' }}
         />
+        {/* Results summary */}
+        <Stack.Screen
+          name="results"
+          options={{ title: 'Results' }}
+        />
       </Stack>
-      <StatusBar style="auto" />
+
     </>
   );
 }

@@ -19,6 +19,7 @@ export default function CameraScreen() {
   const cameraRef = useRef<Camera | null>(null);
   const [photoUri, setPhotoUriLocal] = useState<string | null>(null);
   const setPhotoUri = useFlowStore((state) => state.setPhotoUri);
+  const setPhotoBase64 = useFlowStore((state) => state.setPhotoBase64);
 
   // Request permissions when the component mounts
   useEffect(() => {
@@ -31,9 +32,10 @@ export default function CameraScreen() {
   const handleTakePhoto = async () => {
     try {
       if (cameraRef.current) {
-        const photo = await cameraRef.current.takePictureAsync();
+        const photo = await cameraRef.current.takePictureAsync({ base64: true, quality: 0.7 });
         setPhotoUriLocal(photo.uri);
         setPhotoUri(photo.uri);
+        setPhotoBase64(photo.base64 ?? null);
       }
     } catch (error) {
       console.warn('Error taking photo', error);
@@ -44,17 +46,20 @@ export default function CameraScreen() {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.7,
+      base64: true,
     });
     if (!result.canceled) {
-      const uri = result.assets[0].uri;
-      setPhotoUriLocal(uri);
-      setPhotoUri(uri);
+      const asset = result.assets[0];
+      setPhotoUriLocal(asset.uri);
+      setPhotoUri(asset.uri);
+      setPhotoBase64(asset.base64 ?? null);
     }
   };
 
   const resetPhoto = () => {
     setPhotoUriLocal(null);
     setPhotoUri(null);
+    setPhotoBase64(null);
   };
 
   if (!permission) {
@@ -86,10 +91,15 @@ export default function CameraScreen() {
         <Button title="Retake Photo" onPress={resetPhoto} />
         <View style={{ height: 12 }} />
         <Button
+          title="Continue"
+          onPress={() => {
+            router.push('/results');
+          }}
+        />
+        <View style={{ height: 12 }} />
+        <Button
           title="Back to Troubleshooting"
           onPress={() => {
-            // Navigate back to the decision tree. In a full implementation,
-            // you might instead send the photo to a backend here.
             resetPhoto();
             router.back();
           }}
