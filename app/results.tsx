@@ -15,6 +15,7 @@ export default function ResultsScreen() {
   const [summary, setSummary] = useState<string | null>(null);
   const [suggestions, setSuggestions] = useState<string[] | null>(null);
   const [confidence, setConfidence] = useState<number | null>(null);
+  const [healthStatus, setHealthStatus] = useState<string | null>(null);
 
   const handleAnalyze = async () => {
     try {
@@ -45,12 +46,35 @@ export default function ResultsScreen() {
     }
   };
 
+  const handleHealthCheck = async () => {
+    try {
+      setHealthStatus('Checking…');
+      const res = await fetch(`${getApiBaseUrl()}/api/health`);
+      if (!res.ok) throw new Error(String(res.status));
+      const json = await res.json();
+      setHealthStatus(json?.ok ? 'OK' : 'Unexpected response');
+    } catch (e: any) {
+      setHealthStatus(`Failed: ${e?.message || 'error'}`);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={{ padding: 24 }}>
       <View style={{ maxWidth: 800, width: '100%', alignSelf: 'center' }}>
         <Text style={{ fontSize: 20, fontWeight: '600', marginBottom: 16, textAlign: 'center' }}>
           Review & Continue
         </Text>
+
+        <View style={{ marginBottom: 8, padding: 12, backgroundColor: '#f7f7f7', borderRadius: 8 }}>
+          <Text style={{ fontSize: 12, color: '#666' }}>API Base</Text>
+          <Text style={{ fontSize: 12, color: '#333', marginBottom: 8 }}>{getApiBaseUrl()}</Text>
+          <Button title="Test API Connection" onPress={handleHealthCheck} />
+          {healthStatus && (
+            <Text style={{ marginTop: 8, fontSize: 12, color: healthStatus.startsWith('OK') ? 'green' : '#b00' }}>
+              {healthStatus}
+            </Text>
+          )}
+        </View>
 
         <View style={{ marginBottom: 16 }}>
           <Text style={{ fontWeight: '600', marginBottom: 8 }}>Selected Issue</Text>
