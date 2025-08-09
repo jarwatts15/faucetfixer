@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 
 /**
  * The root layout for the Faucet Fixer app.
@@ -48,7 +48,7 @@ export default function RootLayout() {
           options={{ title: 'Results' }}
         />
       </Stack>
-      <StatusBar style="auto" />
+
     </>
   );
 }
