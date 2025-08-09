@@ -86,10 +86,15 @@ export default function CameraScreen() {
         <Button title="Retake Photo" onPress={resetPhoto} />
         <View style={{ height: 12 }} />
         <Button
+          title="Continue"
+          onPress={() => {
+            router.push('/results');
+          }}
+        />
+        <View style={{ height: 12 }} />
+        <Button
           title="Back to Troubleshooting"
           onPress={() => {
-            // Navigate back to the decision tree. In a full implementation,
-            // you might instead send the photo to a backend here.
             resetPhoto();
             router.back();
           }}

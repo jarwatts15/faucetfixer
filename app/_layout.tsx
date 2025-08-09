@@ -42,6 +42,11 @@ export default function RootLayout() {
           name="camera"
           options={{ title: 'Camera' }}
         />
+        {/* Results summary */}
+        <Stack.Screen
+          name="results"
+          options={{ title: 'Results' }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </>

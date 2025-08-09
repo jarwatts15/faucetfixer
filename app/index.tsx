@@ -34,7 +34,7 @@ export default function Home() {
       <View style={{ width: '80%' }}>
         <Button
           title="Photo Diagnosis"
-          onPress={() => router.push('/diagnosisIntro')}
+          onPress={() => router.push('/camera')}
         />
       </View>
     </View>
