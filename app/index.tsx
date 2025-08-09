@@ -31,10 +31,16 @@ export default function Home() {
           onPress={() => router.push('/intakeForm')}
         />
       </View>
-      <View style={{ width: '80%' }}>
+      <View style={{ width: '80%', marginBottom: 12 }}>
         <Button
           title="Photo Diagnosis"
           onPress={() => router.push('/camera')}
+        />
+      </View>
+      <View style={{ width: '80%' }}>
+        <Button
+          title="Open Tabs"
+          onPress={() => router.push('/tabs')}
         />
       </View>
     </View>
