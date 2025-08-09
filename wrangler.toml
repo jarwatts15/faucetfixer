@@ -1,0 +1,6 @@
+name = "faucet-fixer-worker"
+main = "app/index.tsx"
+compatibility_date = "2024-10-01"
+
+[observability]
+enabled = true
