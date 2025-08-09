@@ -23,12 +23,20 @@ export default function Home() {
         Faucet Fixer
       </Text>
       <Text style={{ fontSize: 16, textAlign: 'center', marginBottom: 24 }}>
-        Let's diagnose your faucet problem step by step.
+        Choose how you’d like to proceed: fill out a quick intake form or use photo diagnosis.
       </Text>
-      <Button
-        title="Start Diagnosis"
-        onPress={() => router.push('/diagnosisIntro')}
-      />
+      <View style={{ width: '80%', marginBottom: 12 }}>
+        <Button
+          title="Use Intake Form"
+          onPress={() => router.push('/intakeForm')}
+        />
+      </View>
+      <View style={{ width: '80%' }}>
+        <Button
+          title="Photo Diagnosis"
+          onPress={() => router.push('/diagnosisIntro')}
+        />
+      </View>
     </View>
   );
 }

@@ -22,6 +22,11 @@ export default function RootLayout() {
           name="index"
           options={{ title: 'Home' }}
         />
+        {/* Intake form */}
+        <Stack.Screen
+          name="intakeForm"
+          options={{ title: 'Intake Form' }}
+        />
         {/* Introduction to the diagnosis flow */}
         <Stack.Screen
           name="diagnosisIntro"
