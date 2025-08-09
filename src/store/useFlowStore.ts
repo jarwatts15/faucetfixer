@@ -22,6 +22,10 @@ interface FlowState {
   photoUri: string | null;
   /** Update the photo URI. */
   setPhotoUri: (uri: string | null) => void;
+  /** Base64 of the photo captured or selected by the user. */
+  photoBase64: string | null;
+  /** Update the base64 photo data. */
+  setPhotoBase64: (base64: string | null) => void;
   /** Optional intake form data provided by the user. */
   intakeData: IntakeData | null;
   /** Update the intake form data. */
@@ -33,6 +37,8 @@ export const useFlowStore = create<FlowState>((set) => ({
   setIssue: (issue) => set({ issue }),
   photoUri: null,
   setPhotoUri: (uri) => set({ photoUri: uri }),
+  photoBase64: null,
+  setPhotoBase64: (base64) => set({ photoBase64: base64 }),
   intakeData: null,
   setIntakeData: (data) => set({ intakeData: data }),
 }));
