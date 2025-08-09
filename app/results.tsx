@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, Image, Button, ActivityIndicator, Alert } from 'react-native';
 import { useFlowStore } from '../src/store/useFlowStore';
+import { getApiBaseUrl } from '../src/lib/api';
 
 export default function ResultsScreen() {
   const { intakeData, issue, photoUri, photoBase64 } = useFlowStore((state) => ({
@@ -22,7 +23,7 @@ export default function ResultsScreen() {
       setSuggestions(null);
       setConfidence(null);
 
-      const res = await fetch('http://localhost:4000/api/analyze', {
+      const res = await fetch(`${getApiBaseUrl()}/api/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ issue, intakeData, photoBase64 }),
